@@ -19,11 +19,14 @@ export type ExperienceSection = {
   body: string
 }
 
+export type EmploymentType = '正社員' | '業務委託'
+
 export type ExperienceProject = {
   index: number
   title: string
   company: string
   period: string
+  employmentType: EmploymentType
   role: string
   team: string
   stack: string[]
@@ -52,6 +55,25 @@ export const profile: ProfileBasic = {
 
 export const headline =
   'モバイルアプリ開発を約6年。技術選定・設計判断・チーム改善まで一貫してリードできるテックリード／技術責任者。'
+
+export type CareerPhase = {
+  period: string
+  type: '正社員' | '業務委託'
+  note: string
+}
+
+export const careerPhases: CareerPhase[] = [
+  {
+    period: '2019.10 — 2022.12',
+    type: '正社員',
+    note: 'Moshbit. → ビットキー → ヤマップ',
+  },
+  {
+    period: '2023.01 — 現在',
+    type: '業務委託',
+    note: 'フリーランスとして複数案件を並走',
+  },
+]
 
 export const summary = [
   'モバイルアプリ開発を約6年経験してきました。iOSネイティブ（UIKit, SwiftUI, RxSwift, Combine）を中心に、Flutter、React Nativeでの開発経験があります。テックリード／技術責任者として、技術選定・設計判断・チーム改善までを一貫してリードできることが強みです。',
@@ -117,6 +139,7 @@ export const projects: ExperienceProject[] = [
     title: 'React Native AIチャットアプリ 新規開発',
     company: '株式会社Moshbit.',
     period: '2025年4月 — 現在',
+    employmentType: '業務委託',
     role: '技術責任者（技術選定・設計の意思決定権限を持ち、0→1開発を推進）',
     team: 'エンジニア 2名 + PdM',
     stack: [
@@ -159,7 +182,8 @@ export const projects: ExperienceProject[] = [
     title: 'アバターライブ配信アプリ 開発',
     company: '株式会社Moshbit.',
     period: '2024年4月 — 現在',
-    role: '業務委託 / プログラマ',
+    employmentType: '業務委託',
+    role: 'プログラマ',
     team: 'アプリ 1名 + バックエンド 1名',
     stack: [
       'Swift',
@@ -187,11 +211,39 @@ export const projects: ExperienceProject[] = [
     phases: ['基本設計', '詳細設計', '実装', '単体テスト', '結合テスト', '保守運用'],
   },
   {
+    index: 8,
+    title: '歩数アプリ 開発',
+    company: 'Ito Technologies',
+    period: '2023年7月 — 現在',
+    employmentType: '業務委託',
+    role: 'プログラマ',
+    team: 'iOS 2名 / Android 2名',
+    stack: ['Swift', 'UIKit', 'SwiftUI', 'XcodeGen', 'Realm', 'XCTest', 'mockolo'],
+    overview: '歩いた歩数に応じて観光地を巡る歩数アプリ（平日夜間・土日に並走）。',
+    architecture: 'Clean ArchitectureベースのMVP',
+    sections: [
+      {
+        heading: 'テスト文化の構築（mockolo + Unit Test）',
+        body: 'テストが存在しなかったプロジェクトに対し、mockolo導入とXcode CloudによるCI実行環境を構築。チームでテストを書く習慣が定着し、デグレの早期検知が可能に。',
+      },
+      {
+        heading: 'Xcode Cloud導入によるリリース作業の自動化',
+        body: '手動アップロードによる属人化を、Xcode Cloud導入で解消。ドキュメント整備と合わせて運用の安定化に貢献。',
+      },
+      {
+        heading: 'Maestro E2Eテスト導入 / リファクタリング',
+        body: 'Maestro E2Eテストを導入。CoreMotionを使った歩数取得や、仕様変更でメンテナンス性が落ちていた箇所のリファクタリングも実施。',
+      },
+    ],
+    phases: ['基本設計', '詳細設計', '実装', '単体テスト'],
+  },
+  {
     index: 3,
     title: '位置情報共有アプリ 開発',
     company: '株式会社LinQ',
     period: '2023年4月 — 2024年3月（11ヶ月）',
-    role: '業務委託 / プログラマ',
+    employmentType: '業務委託',
+    role: 'プログラマ',
     team: 'アプリ 10名以上',
     stack: ['Swift', 'UIKit', 'SwiftUI', 'XCTest', 'RxSwift', 'Combine', 'SPM'],
     overview: '位置情報共有アプリのiOS開発。',
@@ -217,7 +269,8 @@ export const projects: ExperienceProject[] = [
     title: '銀行取引用アプリ 開発',
     company: '株式会社チームラボ',
     period: '2023年1月 — 2023年3月（3ヶ月）',
-    role: '業務委託 / プログラマ',
+    employmentType: '業務委託',
+    role: 'プログラマ',
     team: 'アプリ 10名',
     stack: [
       'Swift',
@@ -245,7 +298,8 @@ export const projects: ExperienceProject[] = [
     title: '登山アプリ 開発',
     company: '株式会社ヤマップ',
     period: '2021年6月 — 2022年12月（1年6ヶ月）',
-    role: '正社員 / プログラマ',
+    employmentType: '正社員',
+    role: 'プログラマ',
     team: 'アプリ 4名 / スクラムチーム 6名',
     stack: [
       'Swift',
@@ -282,7 +336,8 @@ export const projects: ExperienceProject[] = [
     title: 'スマートロックiOSアプリ 開発',
     company: '株式会社ビットキー',
     period: '2020年10月 — 2021年5月（6ヶ月）',
-    role: '正社員 / プログラマ + iOSリーダー兼務',
+    employmentType: '正社員',
+    role: 'プログラマ + iOSリーダー兼務',
     team: 'アプリ 6名 / デザイナー 2名',
     stack: [
       'UIKit',
@@ -320,7 +375,8 @@ export const projects: ExperienceProject[] = [
     title: 'VTuber通話アプリ 開発',
     company: '株式会社Moshbit.',
     period: '2019年10月 — 2020年10月（1年1ヶ月）',
-    role: '正社員 / プログラマ',
+    employmentType: '正社員',
+    role: 'プログラマ',
     team: 'アプリ 2名 / バックエンド 1名 / デザイナー 1名',
     stack: ['Swift', 'UIKit', 'CocoaPods', 'Jenkins', 'SkyWay', 'Unity'],
     overview: 'VTuberと1対1通話が可能な通話アプリ／社内向けアプリの開発。',
@@ -349,37 +405,12 @@ export const projects: ExperienceProject[] = [
 
 export const sideProjects: ExperienceProject[] = [
   {
-    index: 8,
-    title: '歩数アプリ 開発',
-    company: 'Ito Technologies',
-    period: '2023年7月 — 現在',
-    role: '業務委託 / プログラマ',
-    team: 'iOS 2名 / Android 2名',
-    stack: ['Swift', 'UIKit', 'SwiftUI', 'XcodeGen', 'Realm', 'XCTest', 'mockolo'],
-    overview: '歩いた歩数に応じて観光地を巡る歩数アプリ。',
-    architecture: 'Clean ArchitectureベースのMVP',
-    sections: [
-      {
-        heading: 'テスト文化の構築（mockolo + Unit Test）',
-        body: 'テストが存在しなかったプロジェクトに対し、mockolo導入とXcode CloudによるCI実行環境を構築。チームでテストを書く習慣が定着し、デグレの早期検知が可能に。',
-      },
-      {
-        heading: 'Xcode Cloud導入によるリリース作業の自動化',
-        body: '手動アップロードによる属人化を、Xcode Cloud導入で解消。ドキュメント整備と合わせて運用の安定化に貢献。',
-      },
-      {
-        heading: 'Maestro E2Eテスト導入 / リファクタリング',
-        body: 'Maestro E2Eテストを導入。CoreMotionを使った歩数取得や、仕様変更でメンテナンス性が落ちていた箇所のリファクタリングも実施。',
-      },
-    ],
-    phases: ['基本設計', '詳細設計', '実装', '単体テスト'],
-  },
-  {
     index: 9,
     title: '画像合成アプリ 開発',
-    company: 'Geelive',
+    company: '自社サービス企業 A',
     period: '2023年2月 — 2023年3月（1ヶ月）',
-    role: '業務委託 / 技術アドバイザー',
+    employmentType: '業務委託',
+    role: '技術アドバイザー',
     team: 'アプリ 2名',
     stack: ['Flutter', 'Riverpod', 'Firebase'],
     overview:
@@ -395,9 +426,10 @@ export const sideProjects: ExperienceProject[] = [
   {
     index: 10,
     title: '農業従事者向けアプリ 開発',
-    company: 'Opening Line',
+    company: '自社サービス企業 B',
     period: '2023年1月 — 2023年6月（6ヶ月）',
-    role: '業務委託 / プログラマ',
+    employmentType: '業務委託',
+    role: 'プログラマ',
     team: 'アプリ 2名 / デザイナー 1名',
     stack: ['Flutter', 'Riverpod', 'Firebase', 'screen_util'],
     overview: '農業従事者向けアプリのFlutter開発（週16時間で参画）。',
@@ -413,9 +445,10 @@ export const sideProjects: ExperienceProject[] = [
   {
     index: 11,
     title: '親子メッセージアプリ 開発',
-    company: 'Hamee株式会社',
+    company: '自社サービス企業 C',
     period: '2021年6月 — 2022年6月（1年）',
-    role: '業務委託 / プログラマ',
+    employmentType: '業務委託',
+    role: 'プログラマ',
     team: 'アプリ 4名 / デザイナー 1名',
     stack: [
       'Swift',

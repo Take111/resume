@@ -1,4 +1,4 @@
-import type { ExperienceProject } from '../data/resume'
+import type { EmploymentType, ExperienceProject } from '../data/resume'
 
 type Props = {
   project: ExperienceProject
@@ -7,14 +7,17 @@ type Props = {
 export function ExperienceItem({ project }: Props) {
   return (
     <article className="border-t border-[var(--line)] py-10">
-      <header className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+      <div className="flex flex-wrap items-center gap-2 text-[11px] text-[var(--fg-muted)]">
+        <EmploymentBadge type={project.employmentType} />
+        <span className="text-[var(--fg-faint)]">{project.period}</span>
+      </div>
+
+      <header className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
         <h3 className="text-[18px] font-medium leading-snug text-[var(--fg)]">
           {project.title}
         </h3>
-        <p className="text-[12px] text-[var(--fg-faint)]">{project.period}</p>
+        <p className="text-[13px] text-[var(--fg-muted)]">{project.company}</p>
       </header>
-
-      <p className="mt-1 text-[13px] text-[var(--fg-muted)]">{project.company}</p>
 
       {project.overview && (
         <p className="mt-5 text-[14.5px] leading-[1.9] text-[var(--fg-muted)]">
@@ -53,5 +56,21 @@ function Field({ label, value }: { label: string; value: string }) {
       <dt className="text-[var(--fg-faint)]">{label}</dt>
       <dd className="text-[var(--fg)]">{value}</dd>
     </>
+  )
+}
+
+function EmploymentBadge({ type }: { type: EmploymentType }) {
+  const isFull = type === '正社員'
+  return (
+    <span
+      className={
+        'inline-flex items-center rounded-sm px-1.5 py-0.5 text-[10px] tracking-wider ' +
+        (isFull
+          ? 'border border-[var(--fg)] text-[var(--fg)]'
+          : 'border border-[var(--line-strong)] text-[var(--fg-muted)]')
+      }
+    >
+      {type}
+    </span>
   )
 }
