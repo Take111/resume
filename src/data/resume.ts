@@ -58,7 +58,7 @@ export const headline =
 
 export type CareerPhase = {
   period: string
-  type: '正社員' | '業務委託'
+  type: EmploymentType
   note: string
 }
 
@@ -267,7 +267,7 @@ export const projects: ExperienceProject[] = [
   {
     index: 4,
     title: '銀行取引用アプリ 開発',
-    company: '株式会社チームラボ',
+    company: '受託開発企業 A',
     period: '2023年1月 — 2023年3月（3ヶ月）',
     employmentType: '業務委託',
     role: 'プログラマ',

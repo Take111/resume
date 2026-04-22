@@ -60,15 +60,13 @@ function Field({ label, value }: { label: string; value: string }) {
 }
 
 function EmploymentBadge({ type }: { type: EmploymentType }) {
-  const isFull = type === '正社員'
+  const variant =
+    type === '正社員'
+      ? 'text-[var(--fg)] border-[var(--fg)]'
+      : 'text-[var(--fg-muted)] border-[var(--line-strong)]'
   return (
     <span
-      className={
-        'inline-flex items-center rounded-sm px-1.5 py-0.5 text-[10px] tracking-wider ' +
-        (isFull
-          ? 'border border-[var(--fg)] text-[var(--fg)]'
-          : 'border border-[var(--line-strong)] text-[var(--fg-muted)]')
-      }
+      className={`inline-flex items-center rounded-sm border px-1.5 py-0.5 text-[10px] tracking-wider ${variant}`}
     >
       {type}
     </span>
