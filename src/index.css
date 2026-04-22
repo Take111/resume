@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", "Noto Serif JP", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light dark;
+  --bg: #fbfaf8;
+  --bg-deep: #f3f1ec;
+  --fg: #1c1a17;
+  --fg-muted: #5a564f;
+  --fg-faint: #8a857c;
+  --line: rgba(28, 26, 23, 0.1);
+  --line-strong: rgba(28, 26, 23, 0.18);
+}
+
+.dark {
+  --bg: #11100e;
+  --bg-deep: #1a1916;
+  --fg: #e8e5dd;
+  --fg-muted: #a09b8f;
+  --fg-faint: #6b675e;
+  --line: rgba(232, 229, 221, 0.1);
+  --line-strong: rgba(232, 229, 221, 0.2);
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-feature-settings: "palt";
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+a {
+  color: inherit;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
