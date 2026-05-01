@@ -1,0 +1,52 @@
+name: Quarterly Resume Review
+
+on:
+  schedule:
+    # 1, 4, 7, 10月の1日 00:05 UTC (= 09:05 JST) に発火
+    - cron: '5 0 1 1,4,7,10 *'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  create-issue:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      ASSIGNEE: Take111
+    steps:
+      - name: Compute quarter label
+        id: quarter
+        run: |
+          year=$(date -u +%Y)
+          month=$(date -u +%m)
+          case $month in
+            01|02|03) quarter=Q1 ;;
+            04|05|06) quarter=Q2 ;;
+            07|08|09) quarter=Q3 ;;
+            10|11|12) quarter=Q4 ;;
+          esac
+          title="[四半期レビュー] ${year}-${quarter} 経歴を更新する"
+          echo "title=$title" >> "$GITHUB_OUTPUT"
+
+      - name: Skip if same-quarter issue already open
+        id: dedup
+        env:
+          TITLE: ${{ steps.quarter.outputs.title }}
+        run: |
+          existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --json number,title \
+            | jq --arg t "$TITLE" '[.[] | select(.title == $t)] | first | .number // empty')
+          if [ -n "$existing" ]; then
+            echo "Found existing issue #$existing — skipping."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create issue
+        if: steps.dedup.outputs.skip == 'false'
+        env:
+          TITLE: ${{ steps.quarter.outputs.title }}
+        run: |
+          gh issue create --repo "$GITHUB_REPOSITORY" --title "$TITLE" --body "" --assignee "$ASSIGNEE"
