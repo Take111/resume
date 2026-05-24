@@ -77,8 +77,7 @@ export const careerPhases: CareerPhase[] = [
 
 export const summary = [
   'モバイルアプリ開発を約6年経験してきました。iOSネイティブ（UIKit, SwiftUI, RxSwift, Combine）を中心に、Flutter、React Nativeでの開発経験があります。テックリード／技術責任者として、技術選定・設計判断・チーム改善までを一貫してリードできることが強みです。',
-  '開発者・事業に並走しながらセキュリティを担保できる人材を志向しており、モバイルアプリ開発で培った実務経験を基盤に、CI/CDへのセキュリティ組み込みやクラウドインフラまで、一気通貫でセキュリティを見られる人材を目指しています。現在はBSCP（Burp Suite Certified Practitioner）取得に向けてPortSwigger Web Security Academyで体系的に学習中です。',
-  '直近ではReact Native + GCPの案件において、アプリケーションから課金基盤・CI/CD・データ分析基盤の設計・構築までを担当し、アプリケーションレイヤーからインフラまで幅広く携わってきました。',
+  '直近ではReact Native + GCPの案件において技術責任者として、アプリケーションからバックエンド・CI/CD・クラウドインフラまでフルスタックで設計・構築を担当しました。モバイル開発の実務経験を基盤に、一気通貫でプロダクトに関われるエンジニアを目指しており、セキュリティへの関心も高くBSCP取得に向けて学習中です。',
   '開発環境の改善も自発的に行っています。過去にはSwiftLint、Periphery、Fastlaneなどを提案導入し、コード品質向上やリリース作業の効率化に貢献しました。また、テスト文化の構築やチーム運営の仕組みづくりなど、チーム全体の生産性と品質を底上げする取り組みも積極的に行っています。',
   '最近はAI駆動開発にも取り組んでおり、Cursor・Claude Codeの活用や、CIへのAIコードレビュー組み込みなど、少人数でも高い生産性を出せる仕組みづくりを行っています。',
 ]
@@ -169,6 +168,10 @@ export const projects: ExperienceProject[] = [
       {
         heading: 'データ分析基盤と CI/CD',
         body: 'Firebase ExtensionでFirestore→BigQuery連携、日次KPI自動集計システムを設計・実装。GCPクォータ設定でコスト管理体制を整備。GitHub Actions + EASによる自動ビルド・デプロイ環境も構築。',
+      },
+      {
+        heading: 'LLM 自前ホスティング基盤と動的スケーリング設計（進行中）',
+        body: '商用LLM APIのコスト最適化のため、ピーク時間帯のみ自前GPU（Cloud Run + vLLM）に切替えるアーキテクチャを設計・実装中。',
       },
       {
         heading: '成果',
